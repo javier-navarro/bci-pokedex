@@ -1,22 +1,21 @@
 
-<div class="text-center" style="margin-top: 100px;" *ngIf="this.spinnerConsultaPokemones">
+<div class="text-center" style="margin-top: 100px; margin-bottom: 50px;" *ngIf="this.spinnerConsultaPokemones">
   <div class="spinner-border"  style="width: 10rem; height: 10rem;" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
 
-<div class="container" *ngIf="this.llegadaPokemones.length>0">
-  <div class="container" style="margin-top: 25px;">
+<div class="container" *ngIf="!this.spinnerConsultaPokemones">
+  <div *ngIf="this.llegadaPokemones.length > 0" class="container" style="margin-top: 25px;">
     <div class="col">
       <div class="form-group">
         <input type="text" class="form-control"  placeholder="Buscador de pokemon" [(ngModel)]="filtroPokemon">
-        <!-- <input type="text" class="form-control"  placeholder="Buscador de pokemon" name="filtroPokemon" [(ngModel)]="filtroPokemon"] > -->
       </div>
     </div>
   </div>
   <!-- INICIO TABLA POKEDEX -->
-  <div class="container container-table">
-    <table class="table table-bordered" style="border: 3px solid;">
+  <div class="container container-table" *ngIf="this.llegadaPokemones.length > 0">
+    <table class="table table-hover table-bordered" style="border: 3px solid;">
       <thead>
         <tr>
           <th>#</th>
@@ -24,8 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let pokemon of this.llegadaPokemones; let i= index"> -->
-        <tr *ngFor="let pokemon of this.llegadaPokemones | filtroBusqueda: filtroPokemon; let i= index">
+        <tr *ngFor="let pokemon of this.llegadaPokemones | filtroBusqueda: filtroPokemon | paginate: { itemsPerPage: 10, currentPage: page }; let i= index">
           <td> {{ pokemon.id}}</td>
           <td>  <a [routerLink]="['/home/detalle-pokemon', i+1]" data-bs-toggle="tooltip" data-bs-title="Default tooltip"> {{ pokemon.name | titlecase }} </a>  </td>
         </tr>
@@ -33,11 +31,15 @@
       </tbody>
     </table>
   </div>
+  <div class="container text-center" *ngIf="this.llegadaPokemones.length > 0">
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+  </div>
+  
   <!-- FIN TABLA POKEDEX -->
 </div>
 
-<div *ngIf="this.llegadaPokemones.length <= 0 && !this.spinnerConsultaPokemones" class="container" style="margin-top: 25px;">
-  <div class="alert alert-danger" role="alert">
+<div *ngIf="!this.spinnerConsultaPokemones" class="container" style="margin-top: 25px;">
+  <div *ngIf="this.llegadaPokemones.length > 0" class="alert alert-danger" role="alert">
     {{ this.mensajeErrorConsultaPokemones }}
   </div>
 </div>

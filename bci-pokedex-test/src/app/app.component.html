@@ -12,15 +12,15 @@
   <div id="carouselExampleAutoplaying" class="carousel slide contenedor-carrusel" data-bs-ride="carousel" style="background-color: cadetblue;">
       <div class="carousel-inner home-carrusel">
           <div class="carousel-item active">
-              <img src="../../../assets/img/pngwing.com.png" class="d-block w-50" width="441" height="276" >
+              <img src="../../../assets/img/pngwing.com.png" class="d-block w-50" width="350" height="276" >
           </div>
 
           <div class="carousel-item">
-              <img src="../../../assets/img/peakpx.jpg" class="d-block w-50" width="441" height="276">
+              <img src="../../../assets/img/peakpx.jpg" class="d-block w-50" width="350" height="276">
           </div>
         
           <div class="carousel-item">
-              <img src="../../../assets/img/iniciales.jpg" class="d-block w-50" width="441" height="276">
+              <img src="../../../assets/img/iniciales.jpg" class="d-block w-50" width="350" height="276">
           </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -33,35 +33,9 @@
       </button>
   </div>
   <!-- FIN CARRUSEL -->
+  
   <router-outlet *ngIf="this.listaPokemones"></router-outlet>
 
-  <!-- Footer -->
-<footer class="text-center text-lg-start text-muted bg-secondary" >
-  <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05), text-white;">
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fa-brands fa-facebook"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    © 2023 Copyright:
-    <a class="text-reset fw-bold" href="#">Javier Navarro</a>
-  </div>
-  <!-- Copyright -->
-</footer>
+<!-- Footer -->
+  <app-footer></app-footer>
 <!-- Footer -->

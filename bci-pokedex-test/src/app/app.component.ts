@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonServiceService } from './services/pokemon-service.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,15 +26,23 @@ export class AppComponent implements OnInit{
         this.listaPokemones = lista.results;
         this.pokemonServiceService.dataHome = this.listaPokemones;
         console.log(this.listaPokemones);
-
-
-        this.listaPokemones.forEach((element: any, index: any) => {
-          element['id'] = index + 1;
-          this.pokemonServiceService.dataHome = this.listaPokemones;
-        });
+        if(this.listaPokemones === undefined){
+          this.listaPokemones = [];
+          this.pokemonServiceService.dataHome = this.listaPokemones
+        }else {
+          this.listaPokemones.forEach((element: any, index: any) => {
+            element['id'] = index + 1;
+            this.pokemonServiceService.dataHome = this.listaPokemones;
+          });
+        }
+        
       }, () =>{
         this.listaPokemones = [];
         this.pokemonServiceService.dataHome = this.listaPokemones
       })
+  }
+
+  botonBienvenida(): void {
+   // Swal.fire('notificacion simple');
   }
 }
