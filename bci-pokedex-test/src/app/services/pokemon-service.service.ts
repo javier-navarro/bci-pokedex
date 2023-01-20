@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 const { urls } = environment;
 @Injectable({
@@ -13,15 +13,14 @@ export class PokemonServiceService {
   constructor(private httpClient: HttpClient) { }
 
   getAllPokemones(): Observable <any>{
-    return this.httpClient.get<any>(urls.getAllPokemones);
+    return this.httpClient.get<any>(urls.getAllPokemones).
+      pipe(catchError(e =>{
+        return throwError(e);
+      }));
   }
 
   getDetallePokemon(idPokemon: number):  Observable <any>{
     return this.httpClient.get<any>(urls.getDetallePokemon+idPokemon);
-  }
-
-  getImagenPokemon(idPokemon: string): Observable <any> {
-    return this.httpClient.get<any>(urls.getImagenPokemon+idPokemon);
   }
 
   getLocalizacionPokemon(idPokemon: string): Observable<any>{

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
-
+import * as globals from 'src/app/global';
 @Component({
   selector: 'app-detalle-pokemon',
   templateUrl: './detalle-pokemon.component.html',
@@ -14,6 +14,11 @@ export class DetallePokemonComponent implements OnInit {
   detallePokemon: any;
   imagenPokemon: any;
   localizacionPokemon: any;
+  mensajesErrores = globals.mensajesEror;
+  errorLocalicacionPokemon: string = '';
+  errorDetallePokemon: string = '';
+  vaciaLocalicacionPokemon: string = this.mensajesErrores.CONSULTA_UBICACION_VACIA;
+  spinnerConsultaDetalle: any;
   constructor(private activatedRoute: ActivatedRoute,
               private pokemonServiceService:PokemonServiceService) { }
 
@@ -28,11 +33,18 @@ export class DetallePokemonComponent implements OnInit {
   }
 
   consultaDetallePokemon(): any {
-    this.pokemonServiceService.getDetallePokemon(this.pokemonId).
-      subscribe(detalle =>{
+    this.spinnerConsultaDetalle = true;
+    setTimeout(() => {
+      this.pokemonServiceService.getDetallePokemon(this.pokemonId).
+      subscribe(detalle =>{        
+        this.spinnerConsultaDetalle = false;
         this.detallePokemon = detalle;
-        console.log(this.detallePokemon.moves);
+      }, () => {
+        this.spinnerConsultaDetalle = false;
+        this.errorDetallePokemon = this.mensajesErrores.ERROR_CONSULTA_DETALLE;
       });
+    }, 3000);
+    
   }
 
   consultaImagenPokemon(): string {
@@ -42,12 +54,13 @@ export class DetallePokemonComponent implements OnInit {
   }
 
   consultaUbicacion():void {
-    let idLocalizacion = this.pokemonId+'1/encounters';
+    let idLocalizacion = this.pokemonId+'/encounters';
     this.pokemonServiceService.getLocalizacionPokemon(idLocalizacion).
       subscribe(localizacion =>{
         this.localizacionPokemon = localizacion;
         console.log(this.localizacionPokemon);
-        
+      }, () =>{
+        this.errorLocalicacionPokemon = this.mensajesErrores.ERROR_CONSULTA_UBICACION;
       })
   }
 

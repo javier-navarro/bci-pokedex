@@ -1,29 +1,45 @@
 
-<div class="container" style="margin-top: 25px;">
-  <div class="col">
-    <div class="form-group">
-      <input type="text" class="form-control"  placeholder="Buscador de pokemon" [(ngModel)]="filtroPokemon">
-      <!-- <input type="text" class="form-control"  placeholder="Buscador de pokemon" name="filtroPokemon" [(ngModel)]="filtroPokemon"] > -->
-    </div>
+<div class="text-center" style="margin-top: 100px;" *ngIf="this.spinnerConsultaPokemones">
+  <div class="spinner-border"  style="width: 10rem; height: 10rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
   </div>
 </div>
-<!-- INICIO TABLA POKEDEX -->
-<div class="container container-table" style="background-color:burlywood;">
-  <table class="table table-bordered" >
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nombre</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- <tr *ngFor="let pokemon of this.llegadaPokemones; let i= index"> -->
-      <tr *ngFor="let pokemon of this.llegadaPokemones | filtroBusqueda: filtroPokemon; let i= index">
-        <td> {{ pokemon.id}}</td>
-        <td>  <a [routerLink]="['/home/detalle-pokemon', i+1]" data-bs-toggle="tooltip" data-bs-title="Default tooltip"> {{ pokemon.name | titlecase }} </a>  </td>
-      </tr>
 
-    </tbody>
-  </table>
+<div class="container" *ngIf="this.llegadaPokemones.length>0">
+  <div class="container" style="margin-top: 25px;">
+    <div class="col">
+      <div class="form-group">
+        <input type="text" class="form-control"  placeholder="Buscador de pokemon" [(ngModel)]="filtroPokemon">
+        <!-- <input type="text" class="form-control"  placeholder="Buscador de pokemon" name="filtroPokemon" [(ngModel)]="filtroPokemon"] > -->
+      </div>
+    </div>
+  </div>
+  <!-- INICIO TABLA POKEDEX -->
+  <div class="container container-table">
+    <table class="table table-bordered" style="border: 3px solid;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let pokemon of this.llegadaPokemones; let i= index"> -->
+        <tr *ngFor="let pokemon of this.llegadaPokemones | filtroBusqueda: filtroPokemon; let i= index">
+          <td> {{ pokemon.id}}</td>
+          <td>  <a [routerLink]="['/home/detalle-pokemon', i+1]" data-bs-toggle="tooltip" data-bs-title="Default tooltip"> {{ pokemon.name | titlecase }} </a>  </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  </div>
+  <!-- FIN TABLA POKEDEX -->
 </div>
-<!-- FIN TABLA POKEDEX -->
+
+<div *ngIf="this.llegadaPokemones.length <= 0 && !this.spinnerConsultaPokemones" class="container" style="margin-top: 25px;">
+  <div class="alert alert-danger" role="alert">
+    {{ this.mensajeErrorConsultaPokemones }}
+  </div>
+</div>
+
+

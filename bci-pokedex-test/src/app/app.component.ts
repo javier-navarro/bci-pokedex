@@ -31,6 +31,9 @@ export class AppComponent implements OnInit{
           element['id'] = index + 1;
           this.pokemonServiceService.dataHome = this.listaPokemones;
         });
+      }, () =>{
+        this.listaPokemones = [];
+        this.pokemonServiceService.dataHome = this.listaPokemones
       })
   }
 }
