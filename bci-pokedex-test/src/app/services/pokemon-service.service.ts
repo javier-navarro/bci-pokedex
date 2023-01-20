@@ -9,13 +9,22 @@ const { urls } = environment;
 })
 export class PokemonServiceService {
 
+  dataHome: any;
   constructor(private httpClient: HttpClient) { }
 
   getAllPokemones(): Observable <any>{
     return this.httpClient.get<any>(urls.getAllPokemones);
   }
 
-  getDetallePokemon():  Observable <any>{
-    return this.httpClient.get<any>(urls.getAllPokemones);
+  getDetallePokemon(idPokemon: number):  Observable <any>{
+    return this.httpClient.get<any>(urls.getDetallePokemon+idPokemon);
+  }
+
+  getImagenPokemon(idPokemon: string): Observable <any> {
+    return this.httpClient.get<any>(urls.getImagenPokemon+idPokemon);
+  }
+
+  obtenerDataHome(): any {
+    return this.dataHome;
   }
 }

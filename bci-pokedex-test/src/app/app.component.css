@@ -1,0 +1,16 @@
+.titulo-navbar {
+    color: white;
+}
+
+.home-carrusel {
+    display: flex;
+    justify-content: space-around;
+}
+
+.contenedor-carrusel {
+    margin-top: 25px;
+}
+
+.body {
+    background-color: rgb(212, 212, 80 );
+}

@@ -10,6 +10,7 @@ import { PokemonServiceService } from './services/pokemon-service.service';
 export class AppComponent implements OnInit{
   title = 'bci-pokedex-test';
   listaPokemones: any;
+  arregloPokemones: any = [];
   constructor(private pokemonServiceService:PokemonServiceService){
     
   }
@@ -23,8 +24,15 @@ export class AppComponent implements OnInit{
   getlistaPokemones(): any {
     this.pokemonServiceService.getAllPokemones().
       subscribe((lista: any) => {
-        this.listaPokemones = lista;
+        this.listaPokemones = lista.results;
+        this.pokemonServiceService.dataHome = this.listaPokemones;
         console.log(this.listaPokemones);
+
+
+        this.listaPokemones.forEach((element: any, index: any) => {
+          element['id'] = index + 1;
+          this.pokemonServiceService.dataHome = this.listaPokemones;
+        });
       })
   }
 }

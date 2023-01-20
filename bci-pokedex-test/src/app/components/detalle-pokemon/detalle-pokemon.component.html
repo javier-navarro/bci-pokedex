@@ -1,0 +1,100 @@
+
+
+<div class="container container-pokemon" *ngIf="this.detallePokemon" >
+    <div class="card titulo-carta">
+        <div class="card-body">
+          #{{this.detallePokemon.id}}  - {{this.detallePokemon.name  | uppercase}}
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <!-- <img src="../../../assets/img/Bulbasaur.webp" class="card-img-top" > -->
+        <img src="{{consultaImagenPokemon()}}" style="border: 1px solid #000;"  class="card-img-top" >
+        <div class="card-body">
+          <h6 class="card-title">Tipo(s)</h6>
+            <ul [ngSwitch]="this.detallePokemon.types[0].type.name">
+              <li *ngSwitchCase="'grass'"> <img src="../../../assets/img/tipos-pokemon/Tipo_planta.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'poison'"> <img src="../../../assets/img/tipos-pokemon/Tipo_veneno.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'fire'"> <img src="../../../assets/img/tipos-pokemon/Tipo_fuego.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'flying'"> <img src="../../../assets/img/tipos-pokemon/Tipo_volador.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'water'"> <img src="../../../assets/img/tipos-pokemon/Tipo_agua.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'bug'"> <img src="../../../assets/img/tipos-pokemon/Tipo_bicho.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'normal'"> <img src="../../../assets/img/tipos-pokemon/Tipo_normal.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'electric'"> <img src="../../../assets/img/tipos-pokemon/Tipo_electrico.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'ground'"> <img src="../../../assets/img/tipos-pokemon/Tipo_tierra.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'fairy'"> <img src="../../../assets/img/tipos-pokemon/Tipo_hada.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'fighting'"> <img src="../../../assets/img/tipos-pokemon/Tipo_lucha.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'psychic'"> <img src="../../../assets/img/tipos-pokemon/Tipo_psiquico.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'rock'"> <img src="../../../assets/img/tipos-pokemon/Tipo_roca.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'steel'"> <img src="../../../assets/img/tipos-pokemon/Tipo_acero.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'ice'"> <img src="../../../assets/img/tipos-pokemon/Tipo_hielo.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'ghost'"> <img src="../../../assets/img/tipos-pokemon/Tipo_fantasma.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'dragon'"> <img src="../../../assets/img/tipos-pokemon/Tipo_dragon.webp" > {{ this.detallePokemon.types[0].type.name | titlecase}} </li>
+            </ul>
+            <ul *ngIf="this.detallePokemon.types.length > 1" [ngSwitch]="this.detallePokemon.types[1].type.name">
+              <li *ngSwitchCase="'grass'"> <img src="../../../assets/img/tipos-pokemon/Tipo_planta.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'poison'"> <img src="../../../assets/img/tipos-pokemon/Tipo_veneno.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'fire'"> <img src="../../../assets/img/tipos-pokemon/Tipo_fuego.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'flying'"> <img src="../../../assets/img/tipos-pokemon/Tipo_volador.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'water'"> <img src="../../../assets/img/tipos-pokemon/Tipo_agua.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'bug'"> <img src="../../../assets/img/tipos-pokemon/Tipo_bicho.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'normal'"> <img src="../../../assets/img/tipos-pokemon/Tipo_normal.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'electric'"> <img src="../../../assets/img/tipos-pokemon/Tipo_electrico.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'ground'"> <img src="../../../assets/img/tipos-pokemon/Tipo_tierra.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'fairy'"> <img src="../../../assets/img/tipos-pokemon/Tipo_hada.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'fighting'"> <img src="../../../assets/img/tipos-pokemon/Tipo_lucha.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'psychic'"> <img src="../../../assets/img/tipos-pokemon/Tipo_psiquico.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'rock'"> <img src="../../../assets/img/tipos-pokemon/Tipo_roca.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'steel'"> <img src="../../../assets/img/tipos-pokemon/Tipo_acero.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'ice'"> <img src="../../../assets/img/tipos-pokemon/Tipo_hielo.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'ghost'"> <img src="../../../assets/img/tipos-pokemon/Tipo_fantasma.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+              <li *ngSwitchCase="'dragon'"> <img src="../../../assets/img/tipos-pokemon/Tipo_dragon.webp" > {{ this.detallePokemon.types[1].type.name | titlecase}} </li>
+            </ul>
+          <h6 class="card-title">Evolucion(es)</h6>
+          <h6 class="card-text">Ataques</h6>
+          <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 10px;">
+              Ver listado de ataques
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">ATAQUES</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-bordered" >
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let pokemon of this.detallePokemon.moves; let i= index">
+                          <td> {{ i+1 }} </td>
+                          <td> {{ pokemon.move.name}} </td>
+                        </tr>
+                  
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          <h6 class="card-text">Habilidades</h6>
+            <ul>
+              <li> {{ this.detallePokemon.abilities[0].ability.name | titlecase}} </li>
+              <li> {{ this.detallePokemon.abilities[1].ability.name | titlecase}} </li>
+            </ul>
+            
+          <a href="#" class="btn btn-success">Ir al home</a>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,35 @@
-<router-outlet></router-outlet>
+
+  <nav class="navbar bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand titulo-navbar" href="#">BCI Pokedex</a>
+      <form class="d-flex" role="search">
+        <img src="../assets/img/pokebola.jpg" width="50" height="">
+      </form>
+    </div>
+  </nav>
+  <!-- INICIO CARRUSEL -->
+  <div id="carouselExampleAutoplaying" class="carousel slide contenedor-carrusel" data-bs-ride="carousel">
+      <div class="carousel-inner home-carrusel">
+          <div class="carousel-item active">
+              <img src="../../../assets/img/pngwing.com.png" class="d-block w-50" alt="...">
+          </div>
+
+          <div class="carousel-item">
+              <img src="../../../assets/img/peakpx.jpg" class="d-block w-50">
+          </div>
+        
+          <div class="carousel-item">
+              <img src="../../../assets/img/iniciales.jpg" class="d-block w-50" alt="...">
+          </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+  <!-- FIN CARRUSEL -->
+  <router-outlet *ngIf="this.listaPokemones"></router-outlet>

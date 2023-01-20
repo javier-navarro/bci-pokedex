@@ -1,8 +1,4 @@
-.titulo-navbar {
-    color: white;
-}
 
-.home-carrusel {
-    display: flex;
-    justify-content: space-around;
+.container-table{
+    margin-top: 25px;
 }
