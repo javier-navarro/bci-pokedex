@@ -24,6 +24,10 @@ export class PokemonServiceService {
     return this.httpClient.get<any>(urls.getImagenPokemon+idPokemon);
   }
 
+  getLocalizacionPokemon(idPokemon: string): Observable<any>{
+    return this.httpClient.get<any>(urls.getLocalizacionPokemon+idPokemon);
+  }
+
   obtenerDataHome(): any {
     return this.dataHome;
   }

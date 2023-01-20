@@ -13,6 +13,7 @@ export class DetallePokemonComponent implements OnInit {
   pokemonIdImagen: string = '';
   detallePokemon: any;
   imagenPokemon: any;
+  localizacionPokemon: any;
   constructor(private activatedRoute: ActivatedRoute,
               private pokemonServiceService:PokemonServiceService) { }
 
@@ -23,6 +24,7 @@ export class DetallePokemonComponent implements OnInit {
     });
     this.consultaDetallePokemon();
     this.consultaImagenPokemon();
+    this.consultaUbicacion();
   }
 
   consultaDetallePokemon(): any {
@@ -37,6 +39,16 @@ export class DetallePokemonComponent implements OnInit {
     let url ='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
     url+=this.pokemonIdImagen;
     return url;
+  }
+
+  consultaUbicacion():void {
+    let idLocalizacion = this.pokemonId+'1/encounters';
+    this.pokemonServiceService.getLocalizacionPokemon(idLocalizacion).
+      subscribe(localizacion =>{
+        this.localizacionPokemon = localizacion;
+        console.log(this.localizacionPokemon);
+        
+      })
   }
 
 }

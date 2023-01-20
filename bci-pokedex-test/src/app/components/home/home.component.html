@@ -8,7 +8,7 @@
   </div>
 </div>
 <!-- INICIO TABLA POKEDEX -->
-<div class="container container-table">
+<div class="container container-table" style="background-color:burlywood;">
   <table class="table table-bordered" >
     <thead>
       <tr>
@@ -20,11 +20,10 @@
       <!-- <tr *ngFor="let pokemon of this.llegadaPokemones; let i= index"> -->
       <tr *ngFor="let pokemon of this.llegadaPokemones | filtroBusqueda: filtroPokemon; let i= index">
         <td> {{ pokemon.id}}</td>
-        <td>  <a [routerLink]="['/home/detalle-pokemon', i+1]"> {{ pokemon.name | titlecase }} </a>  </td>
+        <td>  <a [routerLink]="['/home/detalle-pokemon', i+1]" data-bs-toggle="tooltip" data-bs-title="Default tooltip"> {{ pokemon.name | titlecase }} </a>  </td>
       </tr>
 
     </tbody>
   </table>
 </div>
 <!-- FIN TABLA POKEDEX -->
-
