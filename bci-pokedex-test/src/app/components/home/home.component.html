@@ -25,21 +25,39 @@
       <tbody>
         <tr *ngFor="let pokemon of this.llegadaPokemones | filtroBusqueda: filtroPokemon | paginate: { itemsPerPage: 10, currentPage: page }; let i= index">
           <td> {{ pokemon.id}}</td>
-          <td>  <a [routerLink]="['/home/detalle-pokemon', i+1]" data-bs-toggle="tooltip" data-bs-title="Default tooltip"> {{ pokemon.name | titlecase }} </a>  </td>
+          <td [ngSwitch]="page">  
+            <a *ngSwitchCase="1" [routerLink]="['/home/detalle-pokemon', i+1]"> {{ pokemon.name | titlecase }} </a>
+            <a *ngSwitchCase="2" [routerLink]="['/home/detalle-pokemon', i+1+10]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="3" [routerLink]="['/home/detalle-pokemon', i+1+20]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="4" [routerLink]="['/home/detalle-pokemon', i+1+30]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="5" [routerLink]="['/home/detalle-pokemon', i+1+40]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="6" [routerLink]="['/home/detalle-pokemon', i+1+50]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="7" [routerLink]="['/home/detalle-pokemon', i+1+60]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="8" [routerLink]="['/home/detalle-pokemon', i+1+70]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="9" [routerLink]="['/home/detalle-pokemon', i+1+80]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="10" [routerLink]="['/home/detalle-pokemon', i+1+90]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="11" [routerLink]="['/home/detalle-pokemon', i+1+100]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="12" [routerLink]="['/home/detalle-pokemon', i+1+110]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="13" [routerLink]="['/home/detalle-pokemon', i+1+120]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="14" [routerLink]="['/home/detalle-pokemon', i+1+130]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="15" [routerLink]="['/home/detalle-pokemon', i+1+140]"> {{ pokemon.name | titlecase }} </a>  
+            <a *ngSwitchCase="16" [routerLink]="['/home/detalle-pokemon', i+1+150]"> {{ pokemon.name | titlecase }} </a>  
+          </td>
         </tr>
   
       </tbody>
     </table>
   </div>
+  <!-- paginacion -->
   <div class="container text-center" *ngIf="this.llegadaPokemones.length > 0">
     <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
   </div>
-  
+  <!-- paginacion -->
   <!-- FIN TABLA POKEDEX -->
 </div>
 
 <div *ngIf="!this.spinnerConsultaPokemones" class="container" style="margin-top: 25px;">
-  <div *ngIf="this.llegadaPokemones.length > 0" class="alert alert-danger" role="alert">
+  <div *ngIf="this.llegadaPokemones.length <= 0" class="alert alert-danger" role="alert">
     {{ this.mensajeErrorConsultaPokemones }}
   </div>
 </div>

@@ -18,10 +18,12 @@ export class HomeComponent implements OnInit {
   constructor(private pokemonServiceService:PokemonServiceService) { }
 
   ngOnInit(): void {
+    this.mensajeErrorConsultaPokemones = 
+          this.mensajesErrores.CONSULTA_POKEMONES_VACIA + ', '+this.mensajesErrores.REINTENTAR_CONSULTA;
+          
     setTimeout(() => {
       this.llegadaPokemones = this.pokemonServiceService.obtenerDataHome();
       if(this.llegadaPokemones.length <= 0){
-        this.mensajeErrorConsultaPokemones = this.mensajesErrores.CONSULTA_POKEMONES_VACIA;
         this.alertaConsultaSinDatos();
       }
       this.spinnerConsultaPokemones = false;
