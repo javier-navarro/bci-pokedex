@@ -58,7 +58,6 @@ export class DetallePokemonComponent implements OnInit {
     this.pokemonServiceService.getLocalizacionPokemon(idLocalizacion).
       subscribe(localizacion =>{
         this.localizacionPokemon = localizacion;
-        console.log(this.localizacionPokemon);
       }, () =>{
         this.errorLocalicacionPokemon = this.mensajesErrores.ERROR_CONSULTA_UBICACION;
       })

@@ -20,15 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.mensajeErrorConsultaPokemones = 
           this.mensajesErrores.CONSULTA_POKEMONES_VACIA + ', '+this.mensajesErrores.REINTENTAR_CONSULTA;
-          
-    setTimeout(() => {
-      this.llegadaPokemones = this.pokemonServiceService.obtenerDataHome();
-      if(this.llegadaPokemones.length <= 0){
-        this.alertaConsultaSinDatos();
-      }
-      this.spinnerConsultaPokemones = false;
-    }, 3000);
-    
+    this.consultaData();
   }
 
   alertaConsultaSinDatos(): void {
@@ -43,6 +35,16 @@ export class HomeComponent implements OnInit {
       title: this.mensajeErrorConsultaPokemones,
       text: this.mensajesErrores.REINTENTAR_CONSULTA,
     });
+  }
+
+  consultaData(): any {
+    setTimeout(() => {
+      this.llegadaPokemones = this.pokemonServiceService.obtenerDataHome();
+      if(this.llegadaPokemones.length <= 0){
+        this.alertaConsultaSinDatos();
+      }
+      this.spinnerConsultaPokemones = false;
+    }, 3000);
   }
 
 }

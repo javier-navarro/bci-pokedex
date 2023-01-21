@@ -17,6 +17,8 @@ export class AppComponent implements OnInit{
   arregloPokemonesSinConexion = dataSinConexion.DATA_SIN_CONEXION;
   spinnerConsultaPokemones: boolean = true;
   mensajesErrores = globals.mensajesEror;
+  error400 = false;
+  error500 = false;
 
   constructor(private pokemonServiceService:PokemonServiceService){ 
   }
@@ -31,7 +33,7 @@ export class AppComponent implements OnInit{
         this.spinnerConsultaPokemones = false;
         this.listaPokemones = lista.results;
         this.pokemonServiceService.dataHome = this.listaPokemones;
-        console.log(this.listaPokemones);
+
         if(this.listaPokemones === undefined){
           this.alertaPokemonesSinConexion();
           this.listaPokemones = this.arregloPokemonesSinConexion.results;
@@ -39,14 +41,16 @@ export class AppComponent implements OnInit{
             element['id'] = index + 1;
             this.pokemonServiceService.dataHome = this.listaPokemones;
           });
-        }else {
+        }
+        else {
+          this.error400 = true;
           this.listaPokemones.forEach((element: any, index: any) => {
             element['id'] = index + 1;
             this.pokemonServiceService.dataHome = this.listaPokemones;
           });
         }
-        
       }, () =>{
+        this.error500 = true;
         this.spinnerConsultaPokemones = false;
         this.alertaPokemonesSinConexion();
         this.listaPokemones = this.arregloPokemonesSinConexion.results;
@@ -54,7 +58,7 @@ export class AppComponent implements OnInit{
           element['id'] = index + 1;
           this.pokemonServiceService.dataHome = this.listaPokemones;
         });
-      })
+      });
   }
 
   alertaPokemonesSinConexion(): void {

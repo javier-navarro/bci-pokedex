@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   urls: {
-    getAllPokemones: 'https://pokeapi',
+    //getAllPokemones: 'https://pokeapi.co',
+    getAllPokemones: 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=151',
     getDetallePokemon: 'https://pokeapi.co/api/v2/pokemon/',
     getImagenPokemon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
     getLocalizacionPokemon: 'https://pokeapi.co/api/v2/pokemon/'
